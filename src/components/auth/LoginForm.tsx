@@ -2,11 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { LogIn, AlertCircle } from 'lucide-react';
 
-interface LoginFormProps {
-  onToggleForm: () => void;
-}
-
-export function LoginForm({ onToggleForm }: LoginFormProps) {
+export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -87,13 +83,7 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
 
           <div className="mt-6 text-center">
             <p className="text-sm text-slate-600">
-              Don't have an account?{' '}
-              <button
-                onClick={onToggleForm}
-                className="text-slate-900 font-medium hover:underline"
-              >
-                Sign Up
-              </button>
+              Demo: Use any email/password to create an account
             </p>
           </div>
         </div>
