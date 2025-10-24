@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { LoginForm } from './components/auth/LoginForm';
+import { RegisterForm } from './components/auth/RegisterForm';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { UserDashboard } from './components/user/UserDashboard';
 
 function AppContent() {
   const { user, profile, loading } = useAuth();
+  const [showRegister, setShowRegister] = useState(false);
 
   if (loading) {
     return (
@@ -18,7 +21,11 @@ function AppContent() {
   }
 
   if (!user || !profile) {
-    return <LoginForm />;
+    return showRegister ? (
+      <RegisterForm onToggleForm={() => setShowRegister(false)} />
+    ) : (
+      <LoginForm onToggleForm={() => setShowRegister(true)} />
+    );
   }
 
   if (!profile.is_active) {
